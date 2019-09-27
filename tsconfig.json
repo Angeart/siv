@@ -15,9 +15,13 @@
       "webpack-env",
       "vuetify"
     ],
+    "typeRoots": [
+      "src/types"
+    ],
     "paths": {
       "@/*": [
-        "src/*"
+        "src/*",
+        "src/types/*"
       ]
     },
     "lib": [
