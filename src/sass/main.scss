@@ -1,0 +1,414 @@
+// Required for modifying core defaults from Vuetify
+@import '~vuetify/src/styles/styles.sass';
+@import '~@/sass/_utils.scss';
+
+
+@mixin background-color($color_value) {
+  background-color: $color_value !important;
+  border-color: $color_value !important;
+}
+@mixin text-color($color_value) {
+  color: $color_value !important;
+  caret-color: $color_value !important;
+}
+
+.transparent {
+  @include background-color(transparent);
+}
+
+html, body {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+@mixin css-variable-map-get($property, $color, $level...) {
+  #{$property}: map-deep-get($color, $level...);
+}
+@mixin css-variable($property, $color) {
+  #{$property}: $color;
+}
+
+$tree-arrow-size: 16px;
+.v-tooltip__content {
+  backdrop-filter: blur(16px);
+
+}
+.v-application {
+  @include css-variable-map-get(--nav-color, $material-dark, 'background');
+  @include css-variable-map-get(--nav-tree-color, $grey, 'darken-1');
+  @include css-variable-map-get(--nav-item-overlay-color, $grey, 'lighten-4');
+  @include css-variable-map-get(--nav-background-color, $grey, 'darken-3');
+  @include css-variable-map-get(--nav-text-color, $material-dark, 'text', 'primary');
+  @include css-variable-map-get(--nav-text-secondary, $material-dark, 'text', 'secondary');
+  @include css-variable-map-get(--nav-accent, $pink, 'darken-2');
+  &.theme--light {
+    $material-theme: $material-light;
+    @include css-variable-map-get(--background-color, $material-theme, 'background');
+    @include css-variable-map-get(--text-color, $material-theme, 'text', 'primary');
+    @include css-variable-map-get(--text-secondary, $material-theme, 'text', 'secondary');
+    @include css-variable(--text-with-accent, map-deep-get($shades, 'white'));
+    @include css-variable-map-get(--color-level-1, $grey, 'lighten-4');
+    @include css-variable-map-get(--color-level-2, $grey, 'lighten-3');
+    @include css-variable-map-get(--color-level-3, $grey, 'lighten-2');
+    @include css-variable-map-get(--color-level-4, $shades, 'white');
+    @include css-variable-map-get(--accent, $pink, 'lighten-2');
+    @include css-variable(--color-level-1-5, lighten(map-deep-get($grey, 'lighten-3'), 6.8%));
+    @include css-variable(--color-level-2-5, lighten(map-deep-get($grey, 'lighten-2'), 6.8%));
+    @include css-variable(--color-level-3-5, lighten(map-deep-get($grey, 'lighten-1'), 6.8%));
+    @include css-variable(--color-level-4-5, lighten(map-deep-get($grey, 'base'), 6.8%));
+    @include css-variable-map-get(--splitter-background-color, $grey, 'base');
+  }
+  &.theme--dark {
+    $material-theme: $material-dark;
+    @include css-variable-map-get(--background-color, $material-theme, 'background');
+    @include css-variable-map-get(--text-color, $material-theme, 'text', 'theme');
+    @include css-variable-map-get(--text-secondary, $material-theme, 'text', 'secondary');
+    @include css-variable(--text-with-accent, map-deep-get($shades, 'white'));
+    @include css-variable-map-get(--color-level-1, $grey, 'darken-1');
+    @include css-variable-map-get(--color-level-2, $grey, 'darken-2');
+    @include css-variable-map-get(--color-level-3, $grey, 'darken-3');
+    @include css-variable-map-get(--color-level-4, $grey, 'darken-4');
+    @include css-variable-map-get(--accent, $pink, 'darken-2');
+    @include css-variable(--color-level-1-5, darken(map-deep-get($grey, 'darken-1'), 6.8%));
+    @include css-variable(--color-level-2-5, darken(map-deep-get($grey, 'darken-2'), 6.8%));
+    @include css-variable(--color-level-3-5, darken(map-deep-get($grey, 'darken-3'), 6.8%));
+    @include css-variable(--color-level-4-5, darken(map-deep-get($grey, 'darken-4'), 6.8%));
+    @include css-variable-map-get(--splitter-background-color, $grey, 'darken-1');
+  }
+  $default-transition: color $primary-transition, background-color $primary-transition, border-color $primary-transition;
+  &.theme-changing *,
+  &.theme-changing *::before,
+  &.theme-changing *::after {
+    transition: $default-transition;
+  }
+  .no-margin {
+    margin: unset !important;
+  }
+  .no-vertical-margin {
+    margin-top: unset;
+    margin-bottom: unset;
+  }
+  .no-padding {
+    padding: unset !important;
+    &-child > * {
+      padding: unset !important;
+    }
+  }
+  .no-vertical-padding {
+    padding-top: unset !important;
+    padding-bottom: unset !important;
+  }
+  .vue-recycle-scroller__item-view {
+    // transition: $default-transition;
+    &.hover {
+      background-color: var(--color-level-2-5);
+    }
+    .v-input--is-focused {
+      background-color: var(--accent);
+      &.v-input:not(.v-input--is-disabled) input {
+        color: var(--text-with-accent);
+      }
+    }
+  }
+  .table-border {
+    position: relative;
+    &::before {
+      &.col {
+        margin-top: 12px;
+      }
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      border: solid 1px;
+      border-color: var(--color-level-1);
+    }
+    &:not(:first-child)::before {
+      border-left: unset;
+    }
+  }
+  .fit-to-parent {
+    height: 100%;
+    width: 100%;
+  }
+  .v-navigation-drawer {
+    background-color: var(--nav-color);
+    .v-navigation-drawer__content,
+    .v-navigation-drawer__append {
+      .v-list-item {
+        display: flex;
+        justify-content: flex-start;
+        &::before {
+          background-color: var(--nav-item-overlay-color);
+        }
+        &:hover::before {
+          opacity: .2;
+        }
+        &::after {
+          content: "";
+          transition: $primary-transition;
+          background-color: var(--nav-background-color);
+          width: 8px;
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          right: -8px;
+          opacity: 0;
+        }
+        &.current {
+          &::before {
+            opacity: 1;
+            background-color: var(--nav-background-color);
+            border-radius: 4px 0px 0px 4px;
+          }
+          &:hover::before {
+            opacity: 1;
+          }
+          &::after {
+            opacity: 1;
+          }
+          & > * {
+            z-index: 1;
+          }
+        }
+      }
+    }
+    .v-icon,
+    .v-list-item__title {
+      color: var(--nav-text-color);
+    }
+  }
+  .v-treeview--dense .v-treeview-node__root {
+    min-height: 2em;
+  }
+  .okita-nav-tree {
+    height: 100%;
+    background-color: var(--nav-background-color);
+    span, div {
+      color: var(--nav-text-color);
+    }
+  }
+  .tree {
+    height: 100%;
+    &.dense {
+      font-size: 0.8em;
+      .tree-anchor {
+        line-height: 1.2em;
+      }
+      .tree-arrow {
+        height: $tree-arrow-size;
+        margin-left: $tree-arrow-size;
+        &.has-child {
+          width: $tree-arrow-size;
+          margin-left: 0;
+          $triangleSize: $tree-arrow-size * 0.5;
+          &:after {
+            left: 25%;
+            top: 25%;
+            height: $triangleSize;
+            width: $triangleSize;
+            transform: rotate(-45deg) translateY(sqrt(strip-unit($triangleSize / sqrt(2)))+px) translateX(sqrt(strip-unit($triangleSize / sqrt(2)))+px);
+          }
+          &.expanded:after {
+            transform: rotate(45deg) translateY(-2 * sqrt(strip-unit($triangleSize / sqrt(2)))+px) translateX(sqrt(strip-unit($triangleSize / sqrt(2)))+px);
+          }
+        }
+      }
+    }
+    ul, ol {
+      padding-left: 0px;
+    }
+    .tree-root {
+      padding: 0 0 0 8px;
+      .tree-children .tree-node.selected:not(.has-child) > .tree-content {
+        background-color: var(--color-level-4);
+        span {
+          color: var(--text-color);
+        }
+      }
+      & > .tree-node.selected > .tree-content,
+      .tree-node.selected.has-child > .tree-content {
+        background-color: transparent;
+      }
+      .tree-node {
+        &:not(.selected) > .tree-content:hover,
+        &.has-child > .tree-content:hover {
+          background-color: var(--nav-tree-color);
+        }
+        .tree-content {
+          position: relative;
+          border-radius: 4px 0 0 4px;
+          z-index: 0;
+          transition: background-color $primary-transition;
+          span {
+            color: var(--nav-text-color);
+          }
+          .tree-arrow.has-child:after {
+            border: 1.5px solid;
+            border-color: var(--nav-text-secondary);
+            border-left: 0px;
+            border-top: 0px;
+            transition: transform .25s;
+          }
+        }
+      }
+      // & > .tree-node > .tree-content {
+      //   background-color: var(--color-level-3);
+      //   @include elevation(4);
+      //   z-index: 1;
+      // }
+    }
+  }
+  .square {
+    border-radius: unset;
+  }
+  .v-tabs > .v-tabs-bar {
+    height: 2em;
+    background-color: var(--color-level-3);
+    &.v-tabs-bar--is-mobile:not(.v-tabs-bar--show-arrows):not(.v-slide-group--has-affixes) .v-slide-group__prev,
+    &.v-tabs-bar--is-mobile:not(.v-tabs-bar--show-arrows):not(.v-slide-group--has-affixes) .v-slide-group__next {
+      display: none;
+    }
+    .v-tabs__container {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      transition: transform $primary-transition;
+      background-color: var(--color-level-3);
+    }
+    .v-tab {
+      font-size: 0.8em;
+      border-radius: 8px 8px 0 0;
+      .v-tab__close {
+        margin-left: 0.5em;
+        width: 1em;
+        .v-icon {
+          font-size: 1.5em;
+          font-weight: bold;
+        }
+      }
+      &:not(.v-tab--active) {
+        background-color: var(--color-level-3-5);
+        color: var(--text-color) !important;
+      }
+      &::before,
+      &::after {
+        content: '';
+        position: absolute;
+        background-color: inherit;
+        width: 8px;
+        height: 8px;
+        bottom: 0px;
+        z-index: 1;
+        opacity: 0;
+        top: unset;
+        transition: unset;
+      }
+      &::before {
+        left: -8px;
+      }
+      &::after {
+        right: -8px;
+      }
+      &:not(:first-child) > span::before,
+      & > span::after {
+        content: '';
+        width: 16px;
+        height: 16px;
+        bottom: 0;
+        background-color: var(--color-level-3-5);
+        border-radius: 50%;
+        position: absolute;
+        z-index: 3;
+        opacity: 0;
+      }
+      &:not(:first-child) > span::before {
+        left: -16px;
+      }
+      & > span::after {
+        right: -16px;
+      }
+      &:last-child > span::after {
+        background-color: var(--color-level-3);
+      }
+      &.v-tab--active {
+        background-color: var(--color-level-4);
+        color: var(--text-color);
+        position: relative;
+        z-index: 2;
+        &::before,
+        &::after,
+        & > span::before,
+        & > span::after {
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  .v-input.v-text-field,
+  .v-input.v-select {
+    .v-input__control {
+      min-height: 0.9em;
+      .v-text-field__slot > input,
+      .v-select__selections > input {
+        padding: 4px 0 4px;
+      }
+      .v-label {
+        height: auto;
+        line-height: normal;
+        font-size: 0.8em;
+        top: auto;
+      }
+      .v-input__icon {
+        .v-icon {
+          font-size: 1em;
+        }
+      }
+    }
+  }
+  .v-input:not(.v-input--is-disabled) input {
+    color: var(--text-secondary);
+  }
+  .transparent-field.v-text-field > .v-input__control {
+    .v-input__slot {
+      background-color: transparent;
+    }
+  }
+  .splitter-overlay .splitpanes__splitter {
+    background-color: transparent;
+    z-index: 10;
+    margin-right: -1px;
+    position: relative;
+    &::before {
+      content: '';
+      position: absolute;
+      width: 4px;
+      height: 32px;
+      background-color: var(--splitter-background-color);
+      top: 0;
+      bottom: 0;
+      left: -2px;
+      margin: auto;
+      border-radius: 4px;
+    }
+  }
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+border-radius: 10px;
+background-color: rgba(0, 0, 0, .04);
+}
+::-webkit-scrollbar-thumb {
+background-color: rgba(0, 0, 0, .5);
+border-radius: unset;
+box-shadow:0 0 0 1px rgba(255, 255, 255, .3);
+}
