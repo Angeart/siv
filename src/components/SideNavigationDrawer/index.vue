@@ -59,9 +59,9 @@
 
 <script lang="ts">
 import { Component, Vue, Watch } from "vue-property-decorator";
-import SideNavigationDrawerItem from "@/components/parts/SideNavigationDrawerItem.vue";
+import SideNavigationDrawerItem from "@/components/SideNavigationDrawer/item.vue";
 import keymap from "@/configs/keymap";
-import HotkeyLabel from "./parts/HotkeyLabel.vue";
+import HotkeyLabel from "@/components/parts/HotkeyLabel.vue";
 import colors from "vuetify/lib/util/colors";
 import GlobalEvent from "@/utils/globalevent";
 import { setTimeout } from "timers";

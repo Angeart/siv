@@ -1,37 +1,27 @@
 <template>
-  <v-app>
-    <v-app-bar app>
-      <v-toolbar-title class="headline text-uppercase">
-        <span>Vuetify</span>
-        <span class="font-weight-light">MATERIAL DESIGN</span>
-      </v-toolbar-title>
-      <v-spacer></v-spacer>
-      <v-btn
-        text
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-      >
-        <span class="mr-2">Latest Release</span>
-      </v-btn>
-    </v-app-bar>
-
+  <v-app :class="{ 'theme-changing': themeChanging }">
+    <side-navigation-drawer />
     <v-content>
-      <HelloWorld />
+      <router-view />
     </v-content>
   </v-app>
 </template>
 
 <script lang="ts">
-import Vue from "vue";
-import HelloWorld from "./components/HelloWorld.vue";
+import { Component, Vue } from "vue-property-decorator";
+import SideNavigationDrawer from "./components/SideNavigationDrawer/index.vue";
+import GlobalEvent from "@/utils/globalevent";
 
-export default Vue.extend({
-  name: "App",
+@Component({
   components: {
-    HelloWorld
-  },
-  data: () => ({
-    //
-  })
-});
+    SideNavigationDrawer
+  }
+})
+export default class App extends Vue {
+  private themeChanging = false;
+  private created() {
+    GlobalEvent.$on("start-theme-change", () => (this.themeChanging = true));
+    GlobalEvent.$on("end-theme-change", () => (this.themeChanging = false));
+  }
+}
 </script>
