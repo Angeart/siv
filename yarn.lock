@@ -816,6 +816,13 @@
   resolved "https://registry.yarnpkg.com/@types/q/-/q-1.5.2.tgz#690a1475b84f2a884fd07cd797c00f5f31356ea8"
   integrity sha512-ce5d3q03Ex0sy4R14722Rmt6MT07Ua+k4FwDfdcToYJcMKNtRVQvJ6JCAPdAmAnbRb6CsX6aYb9m96NGod9uTw==
 
+"@types/splitpanes@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@types/splitpanes/-/splitpanes-1.0.0.tgz#5740c40e0a8dbc77ff2f8fd24eb1028b40f509b9"
+  integrity sha512-mvI6INR2rzT5zaWBUTFlAMj8aOvCwWOU1nvWqJzX5SddNu6foTEf/ACsrGSng6QFEqkaX1YRkJRItRKIKON7tw==
+  dependencies:
+    vue ">=2.0.0"
+
 "@types/ua-parser-js@^0.7.33":
   version "0.7.33"
   resolved "https://registry.yarnpkg.com/@types/ua-parser-js/-/ua-parser-js-0.7.33.tgz#4a92089511574e12928a7cb6b99a01831acd1dd7"
@@ -9576,7 +9583,7 @@ vue-virtual-scroller@^1.0.0-rc.2:
     vue-observe-visibility "^0.4.3"
     vue-resize "^0.4.5"
 
-vue@^2.6.10:
+vue@>=2.0.0, vue@^2.6.10:
   version "2.6.10"
   resolved "https://registry.yarnpkg.com/vue/-/vue-2.6.10.tgz#a72b1a42a4d82a721ea438d1b6bf55e66195c637"
   integrity sha512-ImThpeNU9HbdZL3utgMCq0oiMzAkt1mcgy3/E6zWC/G6AaQoeuFdsl9nDhTDU3X1R6FK7nsIUuRACVcjI+A2GQ==

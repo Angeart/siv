@@ -23,6 +23,7 @@
   },
   "devDependencies": {
     "@types/lodash": "^4.14.141",
+    "@types/splitpanes": "^1.0.0",
     "@types/ua-parser-js": "^0.7.33",
     "@vue/cli-plugin-babel": "^3.11.0",
     "@vue/cli-plugin-eslint": "^3.11.0",
