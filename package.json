@@ -22,6 +22,7 @@
     "vuex": "^3.0.1"
   },
   "devDependencies": {
+    "@types/lodash": "^4.14.141",
     "@types/ua-parser-js": "^0.7.33",
     "@vue/cli-plugin-babel": "^3.11.0",
     "@vue/cli-plugin-eslint": "^3.11.0",
@@ -35,6 +36,8 @@
     "eslint-plugin-prettier": "^3.1.0",
     "eslint-plugin-vue": "^5.0.0",
     "liquor-tree": "^0.2.65",
+    "lodash": "^4.17.15",
+    "material-design-icons-iconfont": "^5.0.1",
     "prettier": "^1.18.2",
     "sass": "^1.18.0",
     "sass-loader": "^7.1.0",
