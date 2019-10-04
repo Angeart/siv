@@ -15,10 +15,10 @@ export default {
       mac: "meta+shift+f",
       desc: "Open project view."
     },
-    edit: {
-      win: "ctrl+shift+e",
-      mac: "meta+shift+e",
-      desc: "Open editor view."
+    view: {
+      win: "ctrl+shift+v",
+      mac: "meta+shift+v",
+      desc: "Open image viewer."
     },
     toggleExpand: {
       win: "ctrl+b",

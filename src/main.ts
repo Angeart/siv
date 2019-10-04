@@ -11,6 +11,7 @@ import "@/plugins/virtualScroller";
 import "@/plugins/liquortree.js";
 
 import "@/sass/main.scss";
+import "splitpanes/dist/splitpanes.css";
 
 Vue.config.productionTip = false;
 

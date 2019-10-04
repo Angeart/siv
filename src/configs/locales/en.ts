@@ -1,7 +1,7 @@
 export default {
   sideNavigationDrawer: {
     project: "Project",
-    edit: "Edit",
+    view: "View",
     expand: "Expand",
     collapse: "Collapse",
     shortcutsHelp: "Shortcuts Help"

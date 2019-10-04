@@ -18,13 +18,13 @@
         {{ $tc($i18nHint.sideNavigationDrawer.project) }}
       </side-navigation-drawer-item>
       <side-navigation-drawer-item
-        v-hotkey.prevent.push="hotkeys.edit"
-        :item-class="calculatedClass('edit')"
-        @click="$router.push('/hoge/edit').catch(err => {})"
+        v-hotkey.prevent.push="hotkeys.view"
+        :item-class="calculatedClass('view')"
+        @click="$router.push('/view').catch(err => {})"
         :disabled="!minified"
-        icon="edit"
+        icon="photo"
       >
-        {{ $tc($i18nHint.sideNavigationDrawer.edit) }}
+        {{ $tc($i18nHint.sideNavigationDrawer.view) }}
       </side-navigation-drawer-item>
     </v-list>
     <template v-slot:append>

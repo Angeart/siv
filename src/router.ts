@@ -4,6 +4,11 @@ import Home from "./views/Home.vue";
 
 Vue.use(Router);
 
+const loadView = (view: string) => {
+  return () =>
+    import(/* webpackChunkName: "view-[request]" */ `@/views/${view}.vue`);
+};
+
 export default new Router({
   routes: [
     {
@@ -19,6 +24,11 @@ export default new Router({
       // which is lazy-loaded when the route is visited.
       component: () =>
         import(/* webpackChunkName: "about" */ "./views/About.vue")
+    },
+    {
+      path: "/view",
+      name: "view",
+      component: loadView("Viewer")
     }
   ]
 });
