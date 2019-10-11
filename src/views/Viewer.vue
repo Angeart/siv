@@ -2,6 +2,10 @@
   <splitpanes watch-slots class="splitter-overlay">
     <div splitpanes-min="20" splitpanes-size="20" class="siv-nav-tree"></div>
     <div splitpanes-min="20" splitpanes-size="80" class="fit-to-parent">
+      <v-container>
+        <v-breadcrumbs :items="breadcrumbPathList" divider=">"></v-breadcrumbs>
+        <v-divider></v-divider>
+      </v-container>
       <v-btn @click="openSelectDirectoryDialog">Open</v-btn>
     </div>
   </splitpanes>
@@ -10,7 +14,8 @@
 <script lang="ts">
 import { Component, Prop, Model, Vue } from "vue-property-decorator";
 import Splitpanes from "splitpanes";
-import { ipcRenderer } from "electron";
+import { ipcRenderer, IpcMessageEvent } from "electron";
+import { directoryDialogEvents } from "../common/Events";
 
 @Component({
   components: {
@@ -18,8 +23,27 @@ import { ipcRenderer } from "electron";
   }
 })
 export default class Viewer extends Vue {
+  private breadcrumbPathList: any[] = [];
   public openSelectDirectoryDialog() {
-    ipcRenderer.send("open-directory-dialog");
+    ipcRenderer.send(directoryDialogEvents.openDirectoryDialog);
+    ipcRenderer.on(
+      directoryDialogEvents.selectedDirectory,
+      (ev: IpcMessageEvent, filepaths: string[]) => {
+        console.log("get responded");
+        if (!filepaths || filepaths.length === 0) {
+          return;
+        }
+        let target = filepaths[0];
+        this.breadcrumbPathList = [
+          ...target
+            .split("/")
+            .filter(v => v.length > 0)
+            .map(p => {
+              return { text: p };
+            })
+        ];
+      }
+    );
   }
 }
 </script>
