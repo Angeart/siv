@@ -1,14 +1,6 @@
 import AsyncNeDB from "../../lib/nedbAsyncWrapper";
 import { Member } from "../../utils/typeTraits";
-import { stringToEnum } from "@/utils/stringToEnum";
-
-export const TagModelKeys = stringToEnum(["id", "label"]);
-type TagModelKeys = typeof TagModelKeys;
-
-export interface TagModel {
-  [TagModelKeys.id]: number;
-  [TagModelKeys.label]: string;
-}
+import { TagModel, TagModelKeys } from "@/models/tag";
 
 export class Tag {
   private static _instance: Tag;
@@ -28,12 +20,12 @@ export class Tag {
 
   private _generatePrimary(data: TagModel | number) {
     if (typeof data === "number") {
-      return <Pick<TagModel, "id">>{ id: data };
+      return <Pick<TagModel, typeof TagModelKeys.id>>{ id: data };
     }
-    return <Pick<TagModel, "id">>{ id: data.id };
+    return <Pick<TagModel, typeof TagModelKeys.id>>{ id: data.id };
   }
 
-  public async get(id: Member<TagModel, "id">) {
+  public async get(id: Member<TagModel, typeof TagModelKeys.id>) {
     return this.db.findOneAsync<TagModel>(this._generatePrimary(id));
   }
 

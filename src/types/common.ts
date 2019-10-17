@@ -13,3 +13,5 @@ export type MessageOnFailedResult = Succeeded | MessagedFailed;
 export function isSucceeded(x: any): x is Succeeded {
   return x === Succeeded;
 }
+
+export type LazyComponent = () => Promise<any>;

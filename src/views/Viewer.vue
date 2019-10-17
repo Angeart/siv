@@ -1,6 +1,8 @@
 <template>
   <splitpanes watch-slots class="splitter-overlay">
-    <div splitpanes-min="20" splitpanes-size="20" class="siv-nav-tree"></div>
+    <div splitpanes-min="20" splitpanes-size="20" class="siv-nav-tree">
+      <viewer-sidebar></viewer-sidebar>
+    </div>
     <div splitpanes-min="20" splitpanes-size="80" class="fit-to-parent">
       <v-container>
         <v-breadcrumbs :items="breadcrumbPathList" divider=">"></v-breadcrumbs>
@@ -16,10 +18,12 @@ import { Component, Prop, Model, Vue } from "vue-property-decorator";
 import Splitpanes from "splitpanes";
 import { ipcRenderer, IpcMessageEvent } from "electron";
 import { directoryDialogEvents } from "../common/Events";
+import ViewerSidebar from "@/components/ViewerSidebar.vue";
 
 @Component({
   components: {
-    Splitpanes
+    Splitpanes,
+    ViewerSidebar
   }
 })
 export default class Viewer extends Vue {

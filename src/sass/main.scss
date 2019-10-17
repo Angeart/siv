@@ -398,6 +398,16 @@ $tree-arrow-size: 16px;
       border-radius: 4px;
     }
   }
+  .v-chip {
+    border-collapse: separate;
+    border-spacing: 0;
+    box-sizing: border-box;
+    border-width: thin;
+    border-style: solid;
+    &:not(.v-chip--outlined) {
+      border-color: transparent !important;
+    }
+  }
 }
 
 ::-webkit-scrollbar {
