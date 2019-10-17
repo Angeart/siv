@@ -4,7 +4,7 @@ export default class AsyncNeDB extends NeDB {
   /**
    * コンストラクタ1
    */
-  constructor(pathOrOptions?: string | Nedb.DataStoreOptions) {
+  constructor(pathOrOptions?: string | NeDB.DataStoreOptions) {
     super(pathOrOptions);
   }
 
