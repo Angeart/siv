@@ -1,11 +1,11 @@
 <template>
   <v-list class="transparent" dense>
-    <v-list-group v-for="item in data" :key="item.name">
+    <v-list-group v-for="item in data" :key="item.name" :value="true">
       <template v-slot:activator>
         <v-list-item-title>{{ item.name }}</v-list-item-title>
       </template>
       <v-list-item-content>
-        <component :is="item.component"></component>
+        <component :is="item.component" v-bind="item.props"></component>
       </v-list-item-content>
     </v-list-group>
   </v-list>
@@ -17,6 +17,7 @@ import { LazyComponent } from "../types/common";
 export type ListedComponentsListType = {
   name: string;
   component: LazyComponent;
+  props?: any;
 }[];
 @Component
 export default class ListedComponents extends Vue {
