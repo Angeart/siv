@@ -5,10 +5,18 @@
     </div>
     <div splitpanes-min="20" splitpanes-size="80" class="fit-to-parent">
       <v-container>
-        <v-breadcrumbs :items="breadcrumbPathList" divider=">"></v-breadcrumbs>
+        <div class="d-flex">
+          <v-btn @click="openSelectDirectoryDialog" icon>
+            <v-icon>mdi-folder</v-icon>
+          </v-btn>
+          <v-breadcrumbs
+            class="pr px-2"
+            :items="breadcrumbPathList"
+            divider=">"
+          ></v-breadcrumbs>
+        </div>
         <v-divider></v-divider>
       </v-container>
-      <v-btn @click="openSelectDirectoryDialog">Open</v-btn>
     </div>
   </splitpanes>
 </template>
