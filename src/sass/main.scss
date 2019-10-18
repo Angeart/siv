@@ -132,9 +132,19 @@ $tree-arrow-size: 16px;
       border-left: unset;
     }
   }
-  .fit-to-parent {
+  .fit-to-parent,
+  .fit-xy {
     height: 100%;
     width: 100%;
+  }
+  .fit-x {
+    width: 100%;
+  }
+  .fit-y {
+    height: 100%;
+  }
+  .pr {
+    padding: 0;
   }
   .v-navigation-drawer {
     background-color: var(--nav-color);
