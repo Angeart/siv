@@ -1,6 +1,6 @@
 <template>
   <v-dialog
-    v-hotkey.prevent="hotkeys.shortcutViewer"
+    v-hotkey.prevent.stop="hotkeys.shortcutViewer"
     @hotkey="toggleDialog"
     max-width="80vw"
     width="auto"
