@@ -25,7 +25,7 @@
 import { Component, Prop, Model, Vue } from "vue-property-decorator";
 import Splitpanes from "splitpanes";
 import { ipcRenderer, IpcMessageEvent } from "electron";
-import { directoryDialogEvents } from "../common/Events";
+import { directoryDialogEvents, filesystemEvents } from "../common/Events";
 import ViewerSidebar from "@/components/ViewerSidebar.vue";
 
 @Component({
@@ -45,15 +45,17 @@ export default class Viewer extends Vue {
         if (!filepaths || filepaths.length === 0) {
           return;
         }
-        let target = filepaths[0];
+        let targetURI = filepaths[0];
         this.breadcrumbPathList = [
-          ...target
+          ...targetURI
             .split("/")
             .filter(v => v.length > 0)
             .map(p => {
               return { text: p };
             })
         ];
+        type test = typeof filesystemEvents.openDirectoryImages;
+        ipcRenderer.send(filesystemEvents.openDirectoryImages, targetURI);
       }
     );
   }
