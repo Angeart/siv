@@ -1,5 +1,6 @@
 import { ipcMain, dialog, IpcMessageEvent } from "electron";
 import { directoryDialogEvents } from "../common/Events";
+import { IpcMainReceive } from "vue-ipc-decorator";
 
 ipcMain.on(
   directoryDialogEvents.openDirectoryDialog,
@@ -16,3 +17,21 @@ ipcMain.on(
     );
   }
 );
+
+class OpenDirectory {
+  @IpcMainReceive()
+  async openDirectory() {
+    return new Promise(resolve => {
+      dialog.showOpenDialog(
+        {
+          properties: ["openDirectory"]
+        },
+        (filePaths?: string[], bookmarks?: string[]): void => {
+          if (filePaths) {
+            resolve(filePaths);
+          }
+        }
+      );
+    });
+  }
+}
