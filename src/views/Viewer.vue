@@ -27,6 +27,7 @@ import Splitpanes from "splitpanes";
 import { ipcRenderer, IpcMessageEvent } from "electron";
 import { directoryDialogEvents, filesystemEvents } from "../common/Events";
 import ViewerSidebar from "@/components/ViewerSidebar.vue";
+import { IpcRendererSend } from "vue-ipc-decorator";
 
 @Component({
   components: {
@@ -36,28 +37,23 @@ import ViewerSidebar from "@/components/ViewerSidebar.vue";
 })
 export default class Viewer extends Vue {
   private breadcrumbPathList: any[] = [];
-  public openSelectDirectoryDialog() {
-    ipcRenderer.send(directoryDialogEvents.openDirectoryDialog);
-    ipcRenderer.on(
-      directoryDialogEvents.selectedDirectory,
-      (ev: IpcMessageEvent, filepaths: string[]) => {
-        console.log("get responded");
-        if (!filepaths || filepaths.length === 0) {
-          return;
-        }
-        let targetURI = filepaths[0];
-        this.breadcrumbPathList = [
-          ...targetURI
-            .split("/")
-            .filter(v => v.length > 0)
-            .map(p => {
-              return { text: p };
-            })
-        ];
-        type test = typeof filesystemEvents.openDirectoryImages;
-        ipcRenderer.send(filesystemEvents.openDirectoryImages, targetURI);
-      }
-    );
+  @IpcRendererSend()
+  private openDirectory(): any {}
+  public async openSelectDirectoryDialog() {
+    const filepaths = (await this.openDirectory()) as string[];
+    console.log("get responded");
+    if (!filepaths || filepaths.length === 0) {
+      return;
+    }
+    let targetURI = filepaths[0];
+    this.breadcrumbPathList = [
+      ...targetURI
+        .split("/")
+        .filter(v => v.length > 0)
+        .map(p => {
+          return { text: p };
+        })
+    ];
   }
 }
 </script>
