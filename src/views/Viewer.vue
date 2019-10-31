@@ -25,7 +25,6 @@
 import { Component, Prop, Model, Vue } from "vue-property-decorator";
 import Splitpanes from "splitpanes";
 import { ipcRenderer, IpcMessageEvent } from "electron";
-import { directoryDialogEvents, filesystemEvents } from "../common/Events";
 import ViewerSidebar from "@/components/ViewerSidebar.vue";
 import { IpcRendererSend } from "vue-ipc-decorator";
 

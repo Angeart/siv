@@ -4,9 +4,16 @@ export default {
     view: "View",
     expand: "Expand",
     collapse: "Collapse",
-    shortcutsHelp: "Shortcuts Help"
+    shortcutsHelp: "Shortcuts Help",
+    systemStatus: "System Status"
   },
   dataEditor: {
     test: "Test"
+  },
+  shortcutViewer: {
+    title: "Shortcut keys"
+  },
+  systemStatusViewer: {
+    title: "System Status"
   }
 };

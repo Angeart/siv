@@ -8,6 +8,7 @@ import {
 const isDevelopment = process.env.NODE_ENV !== "production";
 
 import "./main-process/directoryDialog";
+import "./main-process/systemInfo";
 import "./main-process/database/tag";
 
 // Keep a global reference of the window object, if you don't, the window will

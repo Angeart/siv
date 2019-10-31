@@ -7,7 +7,7 @@
     v-model="dialog"
   >
     <v-card>
-      <v-card-title>Shortcut keys</v-card-title>
+      <v-card-title>{{ $tc($i18nHint.shortcutViewer.title) }}</v-card-title>
       <v-card-text>
         <v-list
           class="okita-shorcut-viewer-list"

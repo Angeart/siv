@@ -65,7 +65,7 @@ import HotkeyLabel from "@/components/parts/HotkeyLabel.vue";
 import colors from "vuetify/lib/util/colors";
 import GlobalEvent from "@/utils/globalevent";
 import { setTimeout } from "timers";
-import ShortcutViewer from "@/components/ShortcutViewer.vue";
+import ShortcutViewer from "@/components/dialogs/ShortcutViewer.vue";
 
 @Component({
   components: {
@@ -79,6 +79,7 @@ export default class SideNavigationDrawer extends Vue {
   private hotkeys = keymap.sideNavigationDrawer;
   private testTheme = false;
   private showShortcutViewer = false;
+  private showSystemStatusViewer = false;
   @Watch("testTheme")
   private changeTheme() {
     GlobalEvent.$emit("start-theme-change");

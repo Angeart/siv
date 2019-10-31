@@ -22,6 +22,7 @@
     "vuex": "^3.0.1"
   },
   "devDependencies": {
+    "@types/color": "^3.0.0",
     "@types/lodash": "^4.14.141",
     "@types/nedb": "^1.8.9",
     "@types/splitpanes": "^1.0.0",
@@ -32,7 +33,9 @@
     "@vue/cli-service": "^3.11.0",
     "@vue/eslint-config-prettier": "^5.0.0",
     "@vue/eslint-config-typescript": "^4.0.0",
+    "apexcharts": "^3.10.1",
     "babel-eslint": "^10.0.1",
+    "color": "^3.1.2",
     "electron": "^5.0.0",
     "eslint": "^5.16.0",
     "eslint-plugin-prettier": "^3.1.0",
@@ -40,6 +43,7 @@
     "liquor-tree": "^0.2.65",
     "lodash": "^4.17.15",
     "material-design-icons-iconfont": "^5.0.1",
+    "moment": "^2.24.0",
     "nedb": "^1.8.0",
     "prettier": "^1.18.2",
     "sass": "^1.18.0",
@@ -47,6 +51,7 @@
     "splitpanes": "^1.14.5",
     "typescript": "^3.4.3",
     "ua-parser-js": "^0.7.20",
+    "vue-apexcharts": "^1.5.0",
     "vue-cli-plugin-electron-builder": "^1.4.0",
     "vue-cli-plugin-vuetify": "^0.6.3",
     "vue-i18n": "^8.14.1",

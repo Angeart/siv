@@ -9,6 +9,7 @@ import i18n from "@/plugins/i18n";
 import "@/plugins/focus";
 import "@/plugins/virtualScroller";
 import "@/plugins/liquortree.js";
+import "@/plugins/apexchats";
 
 import "@/sass/main.scss";
 import "splitpanes/dist/splitpanes.css";

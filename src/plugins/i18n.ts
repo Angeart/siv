@@ -57,5 +57,6 @@ export default new VueI18n({
   messages: {
     ja: LocaleJA,
     en: LocaleEN
-  }
+  },
+  silentFallbackWarn: true
 });

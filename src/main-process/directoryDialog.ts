@@ -1,5 +1,4 @@
 import { ipcMain, dialog, IpcMessageEvent } from "electron";
-import { directoryDialogEvents } from "../common/Events";
 import { IpcMainReceive } from "vue-ipc-decorator";
 
 class OpenDirectory {
