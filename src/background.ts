@@ -5,6 +5,7 @@ import {
   createProtocol,
   installVueDevtools
 } from "vue-cli-plugin-electron-builder/lib";
+import contextMenu from "electron-context-menu";
 const isDevelopment = process.env.NODE_ENV !== "production";
 
 import "./main-process/directoryDialog";
@@ -19,6 +20,16 @@ let win: BrowserWindow | null;
 protocol.registerSchemesAsPrivileged([
   { scheme: "app", privileges: { secure: true, standard: true } }
 ]);
+
+// Construct default context menu
+contextMenu({
+  menu: (actions, _p, _w) => [
+    actions.separator(),
+    actions.copy({}),
+    actions.paste({}),
+    actions.separator()
+  ]
+});
 
 function createWindow() {
   // Create the browser window.
