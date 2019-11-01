@@ -26,6 +26,14 @@
       >
         {{ $tc($i18nHint.sideNavigationDrawer.view) }}
       </side-navigation-drawer-item>
+      <side-navigation-drawer-item
+        :item-class="calculatedClass('pixiv')"
+        @click="$router.push('/pixiv').catch(err => {})"
+        :disabled="!minified"
+        icon="web"
+      >
+        {{ $tc($i18nHint.sideNavigationDrawer.view) }}
+      </side-navigation-drawer-item>
     </v-list>
     <template v-slot:append>
       <v-list nav dense>

@@ -29,6 +29,11 @@ export default new Router({
       path: "/view",
       name: "view",
       component: loadView("Viewer")
+    },
+    {
+      path: "/pixiv",
+      name: "pixiv",
+      component: loadView("Pixiv")
     }
   ]
 });
