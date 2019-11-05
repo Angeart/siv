@@ -1,6 +1,6 @@
 "use strict";
 
-import { app, protocol, BrowserWindow } from "electron";
+import { app, protocol, BrowserWindow, webviewTag, shell, WebviewTag } from 'electron';
 import {
   createProtocol,
   installVueDevtools
@@ -22,23 +22,43 @@ protocol.registerSchemesAsPrivileged([
 ]);
 
 // Construct default context menu
-contextMenu({
-  menu: (actions, _p, _w) => [
-    actions.separator(),
-    actions.copy({}),
-    actions.paste({}),
-    actions.separator()
-  ]
-});
+{
+  const menuOptions: contextMenu.Options = {
+    menu: (actions, _p, _w) => [
+      actions.separator(),
+      actions.copy({}),
+      actions.paste({}),
+      actions.separator()
+    ]
+  };
+  // for BrowserWindow
+  contextMenu(menuOptions);
+  app.on("web-contents-created", (e, contents) => {
+    if (contents.getType() === 'webview') {
+      contents.on('new-window', (e, url) => {
+        e.preventDefault();
+        shell.openExternal(url)
+      })
+      let view = contents as unknown as WebviewTag;
+      // for Webviews
+      contextMenu({
+        window: view,
+        ...menuOptions
+      });
+    }
+  })
+}
 
 function createWindow() {
   // Create the browser window.
   win = new BrowserWindow({
     width: 800,
     height: 600,
+    frame: true,
     webPreferences: {
       nodeIntegration: true,
-      webviewTag: true
+      webviewTag: true,
+      webSecurity: false
     }
   });
 
