@@ -35,8 +35,10 @@
     <!--webview-->
     <webview
       class="webview-container"
+      id="wv"
       ref="webview"
       :src="currentUrl"
+      :preload="preload"
     ></webview>
   </div>
 </template>
@@ -50,6 +52,11 @@ export default class ExtraWebview extends Vue {
   private currentUrl: string = "";
   private loading: boolean = false;
   private url: string = "";
+  get preload() {
+    // return `file:${require("path").resolve(__dirname, "../injector/pixiv.js")}`;
+    return `file:${require("path").resolve("./src/injector/pixiv.js")}`;
+    // return "//pixiv.js";
+  }
   get webview() {
     return this.$refs.webview as WebviewTag;
   }
@@ -106,6 +113,12 @@ export default class ExtraWebview extends Vue {
     // commit eventの付与
     this.webview.addEventListener("load-commit", e => {
       this.setUrlBar(e);
+    });
+    this.webview.addEventListener("dom-ready", () => {
+      this.webview.openDevTools();
+      const script = require("raw-loader!@/injector/pixiv").default;
+      this.webview.send("inject", "alert('test')");
+      // this.webview.executeJavaScript(script);
     });
   }
 }

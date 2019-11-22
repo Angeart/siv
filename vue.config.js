@@ -8,6 +8,9 @@ module.exports = {
       chainWebpackMainProcess: config => {
         config.resolve.alias.set("@", path.join(__dirname, "/src"));
       }
+      // builderOptions: {
+      //   extraResources: ["static/pixiv.js"]
+      // }
     }
   }
 };

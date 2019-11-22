@@ -1,6 +1,15 @@
 "use strict";
 
-import { app, protocol, BrowserWindow, webviewTag, shell, WebviewTag } from 'electron';
+import {
+  app,
+  protocol,
+  BrowserWindow,
+  webviewTag,
+  shell,
+  WebviewTag,
+  session,
+  IpcMessageEvent
+} from "electron";
 import {
   createProtocol,
   installVueDevtools
@@ -11,6 +20,7 @@ const isDevelopment = process.env.NODE_ENV !== "production";
 import "./main-process/directoryDialog";
 import "./main-process/systemInfo";
 import "./main-process/database/tag";
+import { ipcMain } from "electron";
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -34,19 +44,19 @@ protocol.registerSchemesAsPrivileged([
   // for BrowserWindow
   contextMenu(menuOptions);
   app.on("web-contents-created", (e, contents) => {
-    if (contents.getType() === 'webview') {
-      contents.on('new-window', (e, url) => {
+    if (contents.getType() === "webview") {
+      contents.on("new-window", (e, url) => {
         e.preventDefault();
-        shell.openExternal(url)
-      })
-      let view = contents as unknown as WebviewTag;
+        shell.openExternal(url);
+      });
+      let view = (contents as unknown) as WebviewTag;
       // for Webviews
       contextMenu({
         window: view,
         ...menuOptions
       });
     }
-  })
+  });
 }
 
 function createWindow() {
@@ -54,7 +64,6 @@ function createWindow() {
   win = new BrowserWindow({
     width: 800,
     height: 600,
-    frame: true,
     webPreferences: {
       nodeIntegration: true,
       webviewTag: true,
